@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Button } from 'react-bootstrap'
 import { MapPOI, DetailPanel, CheckBoxPanel } from './components'
 import './styles/App.css';
-import { BackEnd } from './utils'
+import * as firebase from 'firebase';
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+//import { BackEnd } from './utils'
 
 class App extends Component {
 
@@ -16,14 +18,42 @@ state = {
   }
 
   componentDidMount() {
-    this.loadData()
+    this.loadData();
   }
 
+  getData(data){
+    let cooklist = data.val();
+    let keys = Object.keys(cooklist);
+    let arr = []
+    for(let i = 0; i < keys.length; i++){
+      let k = keys[i];
+      let lat = cooklist[k].lat;
+      let long = cooklist[k].long;
+      let cuisine = cooklist[k].Cuisine;
+      arr[i] = [k, lat, long, cuisine];
+      console.log("arr " + arr[i])
+    }
+    return arr;
+
+}
+
   loadData() {
-    console.log("hi")
-      return BackEnd.getData
-      //.then(data => {
-      //this.setState({ activeEvents: data})
+    var config = {
+     apiKey: "AIzaSyCC5GUnNs8zNRk1vuQblo9rw9b673dc_E0",
+     authDomain: "homeatcollege.firebaseapp.com",
+     databaseURL: "https://homeatcollege.firebaseio.com",
+     projectId: "homeatcollege",
+     storageBucket: "homeatcollege.appspot.com",
+     messagingSenderId: "149969533931"
+    };
+    const cooks = firebase.initializeApp(config).database().ref().child("Cooks");
+    cooks.on('value', this.getData(cooks)).then(data => 
+        this.setState({
+          activeEvents: data
+      })
+    );
+
+    console.log("hi i am a big beast")
   }
   render() {
     return(
