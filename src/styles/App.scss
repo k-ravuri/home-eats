@@ -1,0 +1,34 @@
+$navbar-height: 50px;
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.App {
+  display: flex;
+}
+
+.map-poi {
+  width: 70%;
+  height: calc(100vh - #{$navbar-height});
+}
+
+.timeline-container {
+
+}
+
+.detail-panel {
+  width: 30%;
+  height: calc(100vh - #{$navbar-height});
+  border: 1px solid #ddd;
+  padding: 1rem;
+}
+
+.poi-form-container {
+
+}
+
+.check-box-panel{
+  display: inline;
+  cursor: pointer;
+}

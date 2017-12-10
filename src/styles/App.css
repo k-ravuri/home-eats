@@ -1,0 +1,19 @@
+.navbar {
+  margin-bottom: 0; }
+
+.App {
+  display: flex; }
+
+.map-poi {
+  width: 55%;
+  height: calc(100vh - 50px); }
+
+.detail-panel {
+  width: 45%;
+  height: calc(100vh - 50px);
+  border: 1px solid #ddd;
+  padding: 1rem; }
+
+.check-box-panel {
+  display: inline;
+  cursor: pointer; }
