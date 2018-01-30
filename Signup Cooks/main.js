@@ -26,9 +26,14 @@ function submitForm(e){
   var phone = getInputVal('phone');
   var password = getInputVal('password');
   var cuisine = getInputVal('cuisine');
+  google.maps.event.AddDomListener(window, 'load', initalize);
+
+  function initialize(){
+    var autocomplete = new google.maps.places.Autocomplete()
+  };
 
   // Save message
-  saveMessage(name, address, email, phone, cuisine, password);
+  saveMessage(name, address, email, phone, cuisine, password, lat, long);
 
   // Show alert
   document.querySelector('.alert').style.display = 'block';
